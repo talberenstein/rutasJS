@@ -2,8 +2,8 @@
 <link rel="stylesheet" href="../../css/estilos.css">-->
 
 <div class="ed-container">
-	<div class="ed-item"
-	<form action="#" method="post">
+	<div class="ed-item">
+	<form id="crearContacto" action="#" method="post">
 		<fieldset>
 			<legend>Crear contacto</legend>
 			<label for="nombre">Nombre</label>
@@ -29,7 +29,10 @@
 			<input type="radio" name="color" id="verde" value="verde">
 			<label for="verde">Verde</label>
 
-			<button type="submit" id="btnCrear">Crear</button>
+			<button type="submit" 
+							id="btnCrear" 
+							onclick="_.getCtrl().crear(_.get('crearContacto'));">
+							Crear</button>
 
 		</fieldset>
 	</form>
