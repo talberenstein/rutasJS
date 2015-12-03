@@ -1,4 +1,5 @@
 (function(window,document){
+	'use strict';
 	var consecutivo = 0;
 	_.controlador('contacto',{
 
@@ -22,7 +23,18 @@
 		},
 
 
-		eliminar: function(){},
+		eliminar: function(id){
+			var i = 0, max = this.contactos.length;
+			if(confirm("Desea eliminar el contacto?")){
+				for(; i < max ; i = i +1){
+					if(parseInt(id, 10) === this.contactos[i].identificador){
+						this.contactos.splice(i, 1);
+						break;
+					}
+				}
+				this.listar();
+			}
+		},
 		actualizar: function(){},
 		listar: function(){
 			var cuerpo 		= _.get('cuerpoTabla'),
