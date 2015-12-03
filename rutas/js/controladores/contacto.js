@@ -1,6 +1,7 @@
 (function(window,document){
 	var consecutivo = 0;
 	_.controlador('contacto',{
+
 		contacto: {},
 		contactos: [],
 
@@ -23,6 +24,58 @@
 
 		eliminar: function(){},
 		actualizar: function(){},
-		listar: function(){},
+		listar: function(){
+			var cuerpo 		= _.get('cuerpoTabla'),
+				template 	= _.get('fila'),
+				fragmento	= document.createDocumentFragment(),
+				i = 0,
+				max = this.contactos.length,
+				registro, clon, id, nombre, correo,
+				edad, nacimiento, acepta, color,
+				acciones, eliminar, actualizar,
+				self = this; //Funcion interna para poder actual y elimin
+
+			cuerpo.innerHTML = ''; //Limpiar la tabla
+			for(; i < max ; i = i + 1){
+				registro = self.contactos[i];
+				clon = template.content.cloneNode(true); //NO SOPORTADO POR IE
+				id = clon.querySelector('.identificador');
+				nombre = clon.querySelector('.nombre');
+				correo = clon.querySelector('.correo');
+				edad = clon.querySelector('.edad');
+				nacimiento = clon.querySelector('.nacimiento');
+				acepta = clon.querySelector('.acepta');
+				color = clon.querySelector('.color');
+
+				//Acciones de eliminar y actualizar
+				acciones = clon.querySelector('.acciones');
+				eliminar = acciones.querySelector('.eliminar');
+				actualizar = acciones.querySelector('.actualizar');
+
+				eliminar.dataset.id = registro.identificador;
+				eliminar.addEventListener('click', function(e){
+					e.preventDefault();
+					self.eliminar(e.target.dataset.id);
+				}, false);
+
+				actualizar.dataset.id = registro.identificador;
+				actualizar.addEventListener('click', function(e){
+					e.preventDefault();
+					self.confirmaActualizar(e.target.dataset.id);
+				}, false);
+
+				id.textContent = registro.identificador;
+				nombre.textContent = registro.nombre;
+				correo.textContent = registro.correo;
+				edad.textContent = registro.edad;
+				nacimiento.textContent = registro.nacimiento;
+				acepta.textContent = registro.recibir?'Si':'No';
+				color.textContent = registro.color;
+
+				fragmento.appendChild(clon);
+			}
+			cuerpo.appendChild(fragmento);
+		}
+
 	});
 })(window,document);

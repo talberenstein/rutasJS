@@ -5,6 +5,10 @@
 			'vistas/contactos/crear.html', 'contacto', function(){
 				_.getID('crearContacto').noSubmit();
 			})
-		.ruta('/listar-contactos', 'vistas/contactos/listar.html', 'contacto', null)
+		.ruta('/listar-contactos', 
+				'vistas/contactos/listar.html', 
+				'contacto', function(){
+					_.getCtrl().listar();
+				})
 		.ruta('/actualizar-contacto', 'vistas/contactos/actualizar.html', 'contacto', null);
 })(window, document);
