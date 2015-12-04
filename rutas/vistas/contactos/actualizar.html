@@ -1,11 +1,9 @@
 <!--<link rel="stylesheet" href="../../css/styles.css">
 <link rel="stylesheet" href="../../css/estilos.css">-->
 
-	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="css/estilos.css">
 <div class="ed-container">
 	<div class="ed-item">
-	<form action="#" method="post">
+	<form id="frmActualiza" action="#" method="post">
 		<fieldset>
 			<legend>Crear contacto</legend>
 
@@ -34,7 +32,11 @@
 			<input type="radio" name="color" id="verde" value="verde">
 			<label for="verde">Verde</label>
 
-			<button type="submit" id="btnActualizar">Actualizarr</button>
+<button type="submit"
+							id="btnActualizar"
+							onclick="_.getCtrl().actualizar(_.get('frmActualiza'))">
+							Actualizar
+			</button>
 
 		</fieldset>
 	</form>
